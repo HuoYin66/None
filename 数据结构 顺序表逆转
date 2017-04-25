@@ -1,0 +1,60 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<conio.h>
+#define MAXSIZE 1024
+int i=0;
+typedef char datatype;
+typedef struct{
+	datatype data[MAXSIZE];
+	int last;
+}List;
+List *L;
+List *Creat()
+{   int j=0;
+	char ch;
+	L=(List *)malloc(sizeof(List));
+	L->last=-1;
+	printf("请输入顺序表List中的元素，以“#”结束\n");
+   while((ch=getche())!='#')
+   {
+		L->data[i++]=ch;
+		L->last++;	
+	}
+	return L;
+}
+List * reverse(List * )
+{
+    int j=0;
+	int k=L->last;
+	datatype ch;
+
+	while(j<=k/2)
+	{
+		ch=L->data[k-j];
+        L->data[k-j]=L->data[j];
+		L->data[j]=ch;
+		j++;
+
+	}
+	return L;
+}
+void output(List *)
+{
+	int j=0;
+	while(j<=L->last)
+	{
+		printf("%c ",L->data[j]);
+		j++;
+	}
+	printf("\n");
+
+}
+int main()
+{
+	L=Creat();
+	reverse(L);
+	output(L);
+    return 0;
+	
+
+}
