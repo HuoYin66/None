@@ -1,0 +1,57 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<conio.h>
+int n=0;
+typedef struct Node
+{
+	char data;
+	struct Node*pNext;
+}NODE,*PNODE;
+PNODE Creat(void);
+void reverse(PNODE pHead);
+int main(void)
+{
+	PNODE pHead=NULL;
+	pHead=Creat();
+    reverse(pHead);
+	return 0;
+}
+PNODE Creat(void)
+{
+    PNODE head,p1,p2;
+	char ch;
+    head=p1=(PNODE)malloc(sizeof(NODE));
+	printf("请输入数据 以 # 结束\n");
+    while((ch=getche())!='#')
+	{
+	   p2=(PNODE)malloc(sizeof(NODE));
+       p2->data=ch;
+	   p1->pNext=p2;
+	   p1=p2;
+	}
+	p1->pNext=NULL;
+	return(head);
+}
+void reverse(PNODE head)
+{
+   PNODE p,q;
+   p=head->pNext;
+   head->pNext=NULL;
+   while(p)
+   {
+         q=p;
+         p=p->pNext;
+         q->pNext=head->pNext;
+         head->pNext=q;
+   }
+}
+void print(plist head)
+{
+    plist p;
+	p=head->next;
+	while(p!=NULL)
+	{
+		printf("%c ",p->data);
+		p=p->next;
+	}
+}
