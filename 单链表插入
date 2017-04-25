@@ -1,0 +1,77 @@
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+typedef struct list
+{
+	char data;
+	struct list * next;
+}list,*plist;
+plist creat(void);
+plist insert(plist head,int x,char data);
+void print(plist head);
+int main()
+{
+	int x;
+	char data;
+	plist head;
+	head=creat();
+	printf("\n");
+	scanf("%d %c",&x,&data);
+	head=insert(head,x,data);
+	print(head);
+	return 0;
+}
+plist creat(void)
+{
+	plist head,p,q;
+	char ch;
+	printf("请输入数据 并以‘#’结束\n");
+	head=p=(plist)malloc(sizeof(list));
+	while((ch=getche())!='#')
+	{
+		q=(plist)malloc(sizeof(list));
+		q->data=ch;
+		p->next=q;
+		p=q;
+	}
+	p->next=NULL;
+	return head;
+}
+void print(plist head)
+{
+    plist p;
+	p=head->next;
+	while(p!=NULL)
+	{
+		printf("%c",p->data);
+		p=p->next;
+	}
+	printf("\n");
+}
+plist insert(plist head,int x,char data)
+{
+	int i=0;
+	plist p,q,k;
+	q=(plist)malloc(sizeof(list));
+	k=(plist)malloc(sizeof(list));
+	p=head->next;
+	if(x==1)
+	{
+       k->data=data;
+	   head->next=k;
+	   k->next=p;
+	}
+	else
+	{
+		while(i!=x-1)
+		{   
+	    	q=p;
+            p=p->next;
+		    i++;
+		}
+       k->data=data;
+	   q->next=k;
+	   k->next=p;
+	}
+    return head; 
+}
